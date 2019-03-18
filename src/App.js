@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: #ffbbca;
     font-family: 'ZCOOL XiaoWei', serif;
+    font-display: swap;
+    -webkit-font-smoothing: antialiased;
   }
   ul {
     margin: 0;

@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import api from '../../api';
-import CharacterCard from '../../components/CharacterCard';
 
-const ListWrapper = styled.ul`
+import CharacterCard from '../../components/CharacterCard';
+import Loader from '../../components/Loader';
+import Pagination from '../../components/Pagination';
+
+const CharactersList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, 360px);
   gap: 60px 0;
@@ -11,31 +14,46 @@ const ListWrapper = styled.ul`
   padding: 20px 0;
 `;
 
-const ListItem = styled.li`
+const CharactersListItem = styled.li`
   margin: 0 30px;
 `;
 
 function Characters() {
   const [characters, setCharacters] = React.useState([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState({});
+  const [isLoading, setLoading] = React.useState(false);
 
-  const getCharacters = async () => {
-    api.methods
-      .GET_CHARACTER()
-      .then(({ characters }) => setCharacters(characters));
+  const getCharacters = async page => {
+    await setLoading(true);
+    await api.methods.GET_CHARACTER(page).then(({ characters, totalPages }) => {
+      setCharacters(characters);
+      setTotalPages(totalPages);
+    });
+    await setLoading(false);
   };
 
   React.useEffect(() => {
-    getCharacters();
-  }, []);
+    getCharacters(currentPage);
+  }, [currentPage]);
+
+  if (isLoading) return <Loader />;
 
   return (
-    <ListWrapper>
-      {characters.map((character, index) => (
-        <ListItem key={index}>
-          <CharacterCard {...character} />
-        </ListItem>
-      ))}
-    </ListWrapper>
+    <React.Fragment>
+      <CharactersList>
+        {characters.map((character, index) => (
+          <CharactersListItem key={index}>
+            <CharacterCard {...character} />
+          </CharactersListItem>
+        ))}
+      </CharactersList>
+      <Pagination
+        currentPage={currentPage}
+        handleChangePage={setCurrentPage}
+        totalPages={totalPages}
+      />
+    </React.Fragment>
   );
 }
 

@@ -10,8 +10,9 @@ const api = {
       const request = await axios.get(
         `${api.config.BASE_URL}/character?page=${page}`
       );
-      const characters = await request.data.results;
-      return { characters };
+      const characters = request.data.results;
+      const totalPages = request.data.info.pages;
+      return { characters, totalPages };
     }
   }
 };
