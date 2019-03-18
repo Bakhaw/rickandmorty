@@ -37,6 +37,12 @@ const PaginationList = styled.ul`
         color: #fff;
         transition: 0.3s;
       }
+      @media (max-width: 650px) {
+        height: 33px;
+        width: 33px;
+        font-size: 14px;
+        margin: 7px;
+      }
     }
     .Page__button__previous,
     .Page__button__next {

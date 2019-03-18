@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Description from './Description';
@@ -27,6 +28,7 @@ const Card = styled.div`
 
 function CharacterCard(props) {
   // const {
+  //   id,
   //   image,
   //   gender,
   //   location,
@@ -37,10 +39,12 @@ function CharacterCard(props) {
   //   type
   // } = props;
   return (
-    <Card>
-      <Media {...props} />
-      <Description {...props} />
-    </Card>
+    <Link to={`/character/${props.id}`}>
+      <Card>
+        <Media {...props} />
+        <Description {...props} />
+      </Card>
+    </Link>
   );
 }
 export default CharacterCard;

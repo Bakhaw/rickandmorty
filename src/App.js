@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
     -webkit-font-smoothing: antialiased;
   }
+  a {
+    text-decoration: none;
+  }
   ul {
     margin: 0;
     padding: 0;

@@ -24,12 +24,14 @@ function Characters() {
   const [totalPages, setTotalPages] = React.useState({});
   const [isLoading, setLoading] = React.useState(false);
 
-  const getCharacters = async page => {
+  const getAllCharacters = async page => {
     await setLoading(true);
-    await api.methods.GET_CHARACTER(page).then(({ characters, totalPages }) => {
-      setCharacters(characters);
-      setTotalPages(totalPages);
-    });
+    await api.methods
+      .GET_ALL_CHARACTERS(page)
+      .then(({ characters, totalPages }) => {
+        setCharacters(characters);
+        setTotalPages(totalPages);
+      });
     await setLoading(false);
   };
 
@@ -38,7 +40,7 @@ function Characters() {
   };
 
   React.useEffect(() => {
-    getCharacters(currentPage);
+    getAllCharacters(currentPage);
   }, [currentPage]);
 
   if (isLoading) return <Loader />;
