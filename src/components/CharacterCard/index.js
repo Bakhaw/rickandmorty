@@ -18,7 +18,6 @@ const Card = styled.div`
   justify-content: center;
   text-align: center;
   height: 150px;
-  width: 100%;
   padding: 20px 10px;
   background: #fff;
   border-radius: 10px;

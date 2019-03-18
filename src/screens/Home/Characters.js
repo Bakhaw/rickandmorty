@@ -5,7 +5,7 @@ import CharacterCard from '../../components/CharacterCard';
 
 const ListWrapper = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 320px);
+  grid-template-columns: repeat(auto-fill, 360px);
   gap: 60px 0;
   justify-content: center;
   padding: 20px 0;
