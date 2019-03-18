@@ -33,6 +33,10 @@ function Characters() {
     await setLoading(false);
   };
 
+  const handleChangePage = e => {
+    setCurrentPage(e.selected + 1);
+  };
+
   React.useEffect(() => {
     getCharacters(currentPage);
   }, [currentPage]);
@@ -50,7 +54,7 @@ function Characters() {
       </CharactersList>
       <Pagination
         currentPage={currentPage}
-        handleChangePage={setCurrentPage}
+        handleChangePage={handleChangePage}
         totalPages={totalPages}
       />
     </React.Fragment>
