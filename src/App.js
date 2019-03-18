@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 import UpdateApp from './components/UpdateApp';
-import Home from './screens/Home';
+import Router from './Router';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Home />
+      <Router />
       <UpdateApp />
     </React.Fragment>
   );
