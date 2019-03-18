@@ -9,6 +9,9 @@ const CardMedia = styled.img`
   transition: 0.3s;
   padding: 4px;
   border: 4px solid #fff;
+  &:-moz-loading {
+    visibility: hidden;
+  }
 `;
 
 function Media({ image }) {
