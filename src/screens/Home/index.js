@@ -16,7 +16,7 @@ function Home() {
     triggerSplash();
   }, []);
 
-  // TODO if (showSplash) return <Splash />;
+  if (showSplash) return <Splash />;
 
   return (
     <main>

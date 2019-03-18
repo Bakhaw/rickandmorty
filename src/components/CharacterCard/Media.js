@@ -8,7 +8,7 @@ const CardMedia = styled.img`
   width: 100px;
   transition: 0.3s;
   padding: 4px;
-  border: 4px solid #fff;
+  border: 8px solid #fff;
   &:-moz-loading {
     visibility: hidden;
   }

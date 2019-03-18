@@ -20,24 +20,14 @@ const Card = styled.div`
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
   &:hover {
     .CardMedia {
-      border: 4px solid #eb5286;
+      background: #fff;
+      border: 8px solid #eb5286;
       transition: 0.3s;
     }
   }
 `;
 
 function CharacterCard(props) {
-  // const {
-  //   id,
-  //   image,
-  //   gender,
-  //   location,
-  //   name,
-  //   origin,
-  //   species,
-  //   status,
-  //   type
-  // } = props;
   return (
     <Link to={`/character/${props.id}`}>
       <Card>
@@ -47,4 +37,5 @@ function CharacterCard(props) {
     </Link>
   );
 }
+
 export default CharacterCard;

@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
 import MoreIcon from '@material-ui/icons/MoreHoriz';
 import ReactPaginate from 'react-paginate';
 
@@ -44,10 +42,9 @@ const PaginationList = styled.ul`
         margin: 7px;
       }
     }
-    .Page__button__previous,
-    .Page__button__next {
-      height: 30px;
-      width: 30px;
+    .previous,
+    .next {
+      display: none;
     }
     .Page__button__active {
       a {
@@ -55,31 +52,23 @@ const PaginationList = styled.ul`
         color: #fff;
       }
     }
-    .Page__button__disabled  {
-      filter: opacity(25%);
-      cursor: not-allowed;
-      pointer-events: none;
-    }
   }
 `;
 
 function Pagination({ currentPage, handleChangePage, totalPages }) {
+  const smallScreen = window.screen.width <= 650;
+  const pageRangeDisplayed = smallScreen ? 2 : 6;
   return (
     <PaginationList>
       <ReactPaginate
         activeClassName='Page__button__active'
         breakLabel={<MoreIcon fontSize='small' />}
         containerClassName='Pagination__container'
-        disabledClassName='Page__button__disabled'
         forcePage={currentPage - 1}
         marginPagesDisplayed={1}
-        nextLabel={<ChevronRight fontSize='small' />}
-        nextLinkClassName='Page__button__next'
         onPageChange={e => handleChangePage(e)}
         pageCount={Number(totalPages)}
-        pageRangeDisplayed={2}
-        previousLabel={<ChevronLeft fontSize='small' />}
-        previousLinkClassName='Page__button__previous'
+        pageRangeDisplayed={pageRangeDisplayed}
         subContainerClassName='Pagination__subcontainer'
       />
     </PaginationList>
