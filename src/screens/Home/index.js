@@ -13,7 +13,7 @@ function Home() {
   };
 
   React.useEffect(() => {
-    triggerSplash();
+    // triggerSplash();
   }, []);
 
   if (showSplash) return <Splash />;
