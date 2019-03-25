@@ -6,16 +6,16 @@ const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: ${({ height }) => (height === 'fullscreen' ? '100vh' : '150px')};
   width: 100vw;
   & div {
     color: #eb5286;
   }
 `;
 
-function Loader() {
+function Loader({ height }) {
   return (
-    <LoaderWrapper>
+    <LoaderWrapper height={height}>
       <CircularProgress size={60} />
     </LoaderWrapper>
   );
