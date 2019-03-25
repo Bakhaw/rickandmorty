@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// TODO Responsive <Collection /> component
 const api = {
   config: {
     BASE_URL: 'https://rickandmortyapi.com/api'
