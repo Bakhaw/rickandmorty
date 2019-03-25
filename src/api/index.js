@@ -11,8 +11,7 @@ const api = {
           `${api.config.BASE_URL}/character?page=${page}`
         );
         const characters = request.data.results;
-        const totalPages = request.data.info.pages;
-        return { characters, totalPages };
+        return characters;
       } catch (err) {
         return console.log('Error', err);
       }
