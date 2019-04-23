@@ -1,7 +1,8 @@
 import React from 'react';
-import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
 import classNames from 'classnames';
 import styled from 'styled-components';
+import ArrowDownIcon from '@material-ui/icons/ArrowDownward';
+import ClearIcon from '@material-ui/icons/ClearRounded';
 
 import Button from '../../components/Button';
 
@@ -17,13 +18,47 @@ const Row = styled.div`
   }
 `;
 
-function ToggleFilters({ handleToggle, show }) {
+const Chip = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0px;
+  border-radius: 3px;
+  background: rgba(78, 87, 239, 0.4);
+  margin-left: 8px;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  p {
+    font-size: 12px;
+    margin: 0 5px;
+  }
+  svg {
+  }
+`;
+
+function ToggleFilters({
+  activeFilter,
+  handleResetFilters,
+  handleToggle,
+  show
+}) {
   const title = show ? 'Hide filters' : 'Show filters';
 
   return (
-    <Button onClick={handleToggle} style={{ margin: 0, width: '100%' }}>
+    <Button
+      onClick={handleToggle}
+      style={{ margin: 0, padding: '6px 10px', width: '100%' }}
+    >
       <Row>
-        <span>{title}</span>
+        <Row>
+          <span>{title}</span>{' '}
+          {activeFilter && (
+            <Chip>
+              <p>{activeFilter}</p>
+              <ClearIcon fontSize='small' onClick={handleResetFilters} />
+            </Chip>
+          )}
+        </Row>
         <ArrowDownIcon
           className={classNames('ArrowDown', show && 'ArrowDown__animate')}
         />

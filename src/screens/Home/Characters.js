@@ -25,7 +25,7 @@ function Characters() {
   } = useContext(CharactersContext);
   const items =
     filteredCharacters.length === 0 ? allCharacters : filteredCharacters;
-  const kiss = '\u{1F618}';
+  const heart = '❤️';
 
   if (isLoading) return <Loader height='fullscreen' />;
 
@@ -39,7 +39,7 @@ function Characters() {
           </li>
         ))}
       </ul>
-      {isEndOfList && <p>You know every characters now {kiss}</p>}
+      {isEndOfList && <p>Made with love {heart}</p>}
     </Wrapper>
   );
 }

@@ -10,7 +10,9 @@ const Wrapper = styled.div`
 `;
 
 function Filters() {
-  const { filterCharacters } = useContext(CharactersContext);
+  const { activeFilter, filterCharacters, resetFilters } = useContext(
+    CharactersContext
+  );
   const [showFilters, setShowFilters] = useState(false);
 
   const genderFilters = ['male', 'female', 'genderless', 'unknown'];
@@ -19,13 +21,23 @@ function Filters() {
     filterCharacters(name, value, true); // strict filter = true
   }
 
+  // TODO add a loading placeholder when toggling a filter
   function toggleShowFilters() {
     setShowFilters(!showFilters);
   }
 
+  function handleResetFilters() {
+    resetFilters();
+  }
+
   return (
     <>
-      <ToggleFilters handleToggle={toggleShowFilters} show={showFilters} />
+      <ToggleFilters
+        activeFilter={activeFilter}
+        handleToggle={toggleShowFilters}
+        handleResetFilters={handleResetFilters}
+        show={showFilters}
+      />
       <Wrapper isVisible={showFilters}>
         <FiltersCol
           filters={genderFilters}

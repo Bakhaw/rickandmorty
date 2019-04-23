@@ -5,23 +5,27 @@ export const CharactersContext = createContext(null);
 
 export function ContextProvider({ children }) {
   const {
+    activeFilter,
     allCharacters,
     filterCharacters,
     filteredCharacters,
     isEndOfList,
-    isLoading
+    isLoading,
+    resetFilters
   } = useCharacters();
 
-  const value = {
+  const providerValue = {
+    activeFilter,
     allCharacters,
     filterCharacters,
     filteredCharacters,
     isEndOfList,
-    isLoading
+    isLoading,
+    resetFilters
   };
 
   return (
-    <CharactersContext.Provider value={value}>
+    <CharactersContext.Provider value={providerValue}>
       {children}
     </CharactersContext.Provider>
   );
