@@ -51,7 +51,7 @@ function Description({ name, status, type }) {
     <Wrapper>
       <Row>
         <Title>{name}</Title>
-        <Tooltip title={status}>
+        <Tooltip title={`Status: ${status}`}>
           <Status className={status.toLowerCase()} />
         </Tooltip>
       </Row>
