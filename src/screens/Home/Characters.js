@@ -1,64 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import CharacterCard from '../../components/CharacterCard';
+import Filters from '../../components/Filters';
 import Loader from '../../components/Loader';
-import api from '../../api';
+import { CharactersContext } from '../../context';
 
 const Wrapper = styled.main`
   padding: 20px 0;
   width: 45vw;
   margin: auto;
+  margin-top: 50px;
 `;
 
 function Characters() {
-  const [isEndOfList, setIsEndOfList] = useState(false);
-  const [characters, setCharacters] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setLoading] = useState(false);
-
-  const getAllCharacters = async page => {
-    await setLoading(true);
-
-    // Rick & Morty API total pages = 25
-    if (page <= 2) {
-      const newCharacters = await api.methods.GET_ALL_CHARACTERS(page);
-
-      // If error we stop the function
-      if (!newCharacters) {
-        await setLoading(false);
-        await setIsEndOfList(true);
-        return;
-      }
-
-      await setCharacters([...new Set([...characters, ...newCharacters])]);
-      await handleChangePage();
-    }
-
-    // If last page stop loading
-    if (page === 2) {
-      await setLoading(false);
-      await setIsEndOfList(true);
-    }
-  };
-
-  const handleChangePage = () => {
-    if (isEndOfList) return;
-    setCurrentPage(currentPage + 1);
-  };
-
-  useEffect(() => {
-    getAllCharacters(currentPage);
-  }, [currentPage]);
+  const {
+    allCharacters,
+    filteredCharacters,
+    isLoading,
+    isEndOfList
+  } = useContext(CharactersContext);
+  const items =
+    filteredCharacters.length === 0 ? allCharacters : filteredCharacters;
+  const kiss = '\u{1F618}';
 
   if (isLoading) return <Loader height='fullscreen' />;
 
-  const kiss = '\u{1F618}';
-
   return (
     <Wrapper>
+      <Filters />
       <ul>
-        {characters.map(character => (
+        {items.map(character => (
           <li key={character.id}>
             <CharacterCard {...character} />
           </li>
