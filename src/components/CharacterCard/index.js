@@ -2,38 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Description from './Description';
-import Media from './Media';
+import Header from './Header';
 
-const Card = styled.div`
+const Wrapper = styled.div`
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 150px;
-  padding: 20px 10px;
+  justify-content: flex-start;
+  height: 200px;
+  margin: 15px 0;
+  padding: 0 20px;
   background: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
-    0 5px 15px 0 rgba(0, 0, 0, 0.08);
-  &:hover {
-    .CardMedia {
-      background: #fff;
-      border: 8px solid #eb5286;
-      transition: 0.3s;
-    }
-  }
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  box-shadow: #bababa 3px 3px 0px 0px;
 `;
 
 function CharacterCard(props) {
+  console.log(props);
   return (
     <Link to={`/character/${props.id}`}>
-      <Card>
-        <Media {...props} />
-        <Description {...props} />
-      </Card>
+      <Wrapper>
+        <Header {...props} />
+      </Wrapper>
     </Link>
   );
 }
