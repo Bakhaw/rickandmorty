@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../api';
 
 export function useCharacters() {
-  const TOTAL_PAGES = 1; // Rick & Morty API total pages = 25
+  const TOTAL_PAGES = 25; // Rick & Morty API total pages = 25
   const [isEndOfList, setIsEndOfList] = useState(false);
   const [allCharacters, setAllCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
