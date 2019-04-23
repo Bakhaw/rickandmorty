@@ -15,6 +15,9 @@ const Wrapper = styled.button`
   padding: 3px 8px;
   transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   outline: 0;
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 function Button({ children, ...rest }) {
