@@ -6,7 +6,7 @@ import { CharactersContext } from '../../context';
 const Wrapper = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 30px;
   height: 48px;
   position: fixed;
@@ -20,13 +20,16 @@ const Wrapper = styled.nav`
 
 const Input = styled.input`
   padding: 8px;
-  width: 490px;
+  width: calc(45vw - 16px); /* 16px = left (8px) and right (8px) padding */
   outline: 0;
   background: #e8e7e7;
   border: 0px;
   border-radius: 3px;
   color: #0a0a0a;
   font-size: 14px;
+  @media (max-width: 960px) {
+    width: calc(90vw - 16px);
+  }
 `;
 
 function SearchBar() {
@@ -44,11 +47,13 @@ function SearchBar() {
 
   return (
     <Wrapper>
-      <p>app icon</p>
       <form onSubmit={onSubmit}>
-        <Input type='text' onChange={onChange} />
+        <Input
+          type='text'
+          onChange={onChange}
+          placeholder="Search - try 'Smith'"
+        />
       </form>
-      <div />
     </Wrapper>
   );
 }
