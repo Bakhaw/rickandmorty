@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import List from '../../components/List';
+import Loader from '../../components/Loader';
 import api from '../../api';
 
-import Collection from '../../components/Collection';
-import Loader from '../../components/Loader';
-
 const Wrapper = styled.div`
-  padding: 30px 0;
+  padding: 20px 0;
+  width: 45vw;
+  margin: auto;
 `;
 
 function Characters() {
@@ -18,17 +20,26 @@ function Characters() {
   const getAllCharacters = async page => {
     await setLoading(true);
 
-    const newCharacters = await api.methods.GET_ALL_CHARACTERS(page);
+    // Rick & Morty API total pages = 25
+    if (page <= 25) {
+      const newCharacters = await api.methods.GET_ALL_CHARACTERS(page);
 
-    if (!newCharacters) {
-      await setLoading(false);
-      await setIsEndOfList(true);
-      return;
+      // If error we stop the function
+      if (!newCharacters) {
+        await setLoading(false);
+        await setIsEndOfList(true);
+        return;
+      }
+
+      await setCharacters([...new Set([...characters, ...newCharacters])]);
+      await handleChangePage();
     }
 
-    await setCharacters([...characters, ...newCharacters]);
-
-    await setLoading(false);
+    // If last page stop loading
+    if (page === 25) {
+      await setLoading(false);
+      await setIsEndOfList(true);
+    }
   };
 
   const handleChangePage = () => {
@@ -40,14 +51,14 @@ function Characters() {
     getAllCharacters(currentPage);
   }, [currentPage]);
 
-  if (characters.length === 0) return <Loader height='fullscreen' />;
+  if (isLoading) return <Loader height='fullscreen' />;
 
   const kiss = '\u{1F618}';
+
   return (
     <Wrapper>
-      <Collection list={characters} onBottom={handleChangePage} />
-      {isLoading && <Loader />}
-      {isEndOfList && <p>You know every single character now {kiss}</p>}
+      <List data={characters} />
+      {isEndOfList && <p>You know every characters now {kiss}</p>}
     </Wrapper>
   );
 }
