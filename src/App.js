@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import { ContextProvider } from './context';
 import UpdateApp from './components/UpdateApp';
 import Router from './Router';
 
@@ -8,9 +9,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    background: #ffbbca;
-    font-family: 'ZCOOL XiaoWei', serif;
-    font-display: swap;
+    background: #f9f9fa;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     -webkit-font-smoothing: antialiased;
   }
   a {
@@ -27,10 +27,10 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App() {
   return (
-    <React.Fragment>
+    <ContextProvider>
       <GlobalStyle />
       <Router />
       <UpdateApp />
-    </React.Fragment>
+    </ContextProvider>
   );
 }
