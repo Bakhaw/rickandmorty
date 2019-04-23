@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import List from '../../components/List';
+import CharacterCard from '../../components/CharacterCard';
 import Loader from '../../components/Loader';
 import api from '../../api';
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   padding: 20px 0;
   width: 45vw;
   margin: auto;
@@ -21,7 +21,7 @@ function Characters() {
     await setLoading(true);
 
     // Rick & Morty API total pages = 25
-    if (page <= 25) {
+    if (page <= 2) {
       const newCharacters = await api.methods.GET_ALL_CHARACTERS(page);
 
       // If error we stop the function
@@ -36,7 +36,7 @@ function Characters() {
     }
 
     // If last page stop loading
-    if (page === 25) {
+    if (page === 2) {
       await setLoading(false);
       await setIsEndOfList(true);
     }
@@ -57,7 +57,13 @@ function Characters() {
 
   return (
     <Wrapper>
-      <List data={characters} />
+      <ul>
+        {characters.map(character => (
+          <li key={character.id}>
+            <CharacterCard {...character} />
+          </li>
+        ))}
+      </ul>
       {isEndOfList && <p>You know every characters now {kiss}</p>}
     </Wrapper>
   );

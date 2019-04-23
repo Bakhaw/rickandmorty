@@ -18,11 +18,7 @@ function Home() {
 
   if (showSplash) return <Splash />;
 
-  return (
-    <main>
-      <Characters />
-    </main>
-  );
+  return <Characters />;
 }
 
 export default Home;
