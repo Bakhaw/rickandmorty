@@ -17,6 +17,8 @@ const Wrapper = styled.div`
   border: 1px solid #d6d6d6;
   border-radius: 3px;
   box-shadow: #bababa 3px 3px 0px 0px;
+  @media (max-width: 960px) {
+  }
 `;
 
 const CharacterCard = props => (

@@ -11,6 +11,9 @@ const Wrapper = styled.main`
   width: 45vw;
   margin: auto;
   margin-top: 50px;
+  @media (max-width: 960px) {
+    width: 90vw;
+  }
 `;
 
 function Characters() {

@@ -9,6 +9,9 @@ const CardAvatar = styled.img`
   &:-moz-loading {
     visibility: hidden;
   }
+  @media (max-width: 960px) {
+    width: 38px;
+  }
 `;
 
 function Avatar({ image }) {

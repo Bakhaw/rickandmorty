@@ -11,20 +11,24 @@ const Wrapper = styled.div`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    @media (max-width: 960px) {
+      width: 55vw;
+    }
   }
   .unknown {
     background: orange;
   }
-  .alive  {
+  .alive {
     background: green;
   }
-  .dead  {
+  .dead {
     background: red;
   }
 `;
 
 const Row = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -32,6 +36,9 @@ const Title = styled.h2`
   color: #0a0a0a;
   font-size: 27px;
   font-weight: 500;
+  @media (max-width: 960px) {
+    font-size: 20px;
+  }
 `;
 
 const Status = styled.div`
@@ -44,6 +51,9 @@ const Subtitle = styled.h3`
   color: #727980;
   font-size: 16px;
   font-weight: 400;
+  @media (max-width: 960px) {
+    font-size: 14px;
+  }
 `;
 
 function Description({ name, status, type }) {
