@@ -4,25 +4,7 @@ import { useCharacters } from '../hooks';
 export const CharactersContext = createContext(null);
 
 export function ContextProvider({ children }) {
-  const {
-    activeFilter,
-    allCharacters,
-    filterCharacters,
-    filteredCharacters,
-    isEndOfList,
-    isLoading,
-    resetFilters
-  } = useCharacters();
-
-  const providerValue = {
-    activeFilter,
-    allCharacters,
-    filterCharacters,
-    filteredCharacters,
-    isEndOfList,
-    isLoading,
-    resetFilters
-  };
+  const providerValue = useCharacters();
 
   return (
     <CharactersContext.Provider value={providerValue}>
